@@ -11,6 +11,7 @@ public class Artikel implements Searchable {
     int[] EAN = new int[13];
     private int ddv;
     private String drzava;
+    private int teza;
 
     public int[] getEAN() {
         return EAN;
@@ -45,7 +46,6 @@ public class Artikel implements Searchable {
     public void setDdv(int ddv) {
         this.ddv = ddv;
     }
-
 
     public String getIme() {
         return Ime;
@@ -97,6 +97,7 @@ public class Artikel implements Searchable {
     }
 
     public  String convert(int EAN[]){
+        posodobljen(EAN);
         String strArray = new String();
         for(int i=0; i<EAN.length;i++) {
             strArray +=String.valueOf(EAN[i]);
@@ -104,6 +105,51 @@ public class Artikel implements Searchable {
         }
         return strArray;
 
+    }
+
+
+    public  int[] posodobljen(int [] x ){
+        if(teza!=0) {
+
+            int[] tt = new int[4];
+
+            tt[0]= teza / 1000;
+            teza = teza % 1000;
+            tt[1] = teza /100;
+            teza = teza % 100;
+            tt[2] = teza /10;
+            teza = teza %10;
+            tt[3] = teza;
+
+            x[8] = tt[0];
+            x[9] = tt[1];
+            x[10] = tt[2];
+            x[11] = tt[3];
+        }else {
+            return x;
+        }
+        return x;
+    }
+
+
+    public int pregled_teze(int teza,long[] x){
+
+        // if(teza==0) {
+        long tmp = 0;
+        tmp = x[8] * 1000;
+        teza = (int) tmp;
+        tmp = x[9] * 100;
+        teza += tmp;
+        tmp = x[10] * 10;
+        teza += tmp;
+        tmp = x[11] * 1;
+        teza += tmp;
+        // }
+        //  else if(teza!=0){
+
+        //}
+
+        return teza;
     }
 
 

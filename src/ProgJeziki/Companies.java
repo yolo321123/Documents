@@ -8,26 +8,26 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 
-public class Racuni {
-    private ArrayList<Racun> seznam;
+public class Companies {
+    private ArrayList<Podjetje> seznam;
 
-    public Racuni(){
+    public Companies(){
         this.seznam= new ArrayList<>();
     }
 
-    public void addRacun(){};
+    public void addPodjetje(){};
 
-    public ArrayList<Racun> getTabela() {
+    public ArrayList<Podjetje> getTabela() {
         return seznam;
     }
 
-    public void setTabela(ArrayList<Racun> tabela) {
+    public void setTabela(ArrayList<Podjetje> tabela) {
         this.seznam = tabela;
     }
 
     @Override
     public String toString() {
-        return "Racuni" + seznam +
+        return "Podjetja" + seznam +
                 ' ';
     }
     public void toJson() {
@@ -44,7 +44,7 @@ public class Racuni {
         }
 
     }
-
+    
     public void fromJSON() {
         Gson gson = new Gson();
 

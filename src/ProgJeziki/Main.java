@@ -26,6 +26,14 @@ public class  Main {
 
         Racuni e1= new Racuni();
 
+        boolean bool =a1.checkDigit(a1.getEAN());
+        if (bool=true) {
+            System.out.printf("true\n");
+        }
+        else
+        {
+            System.out.printf("false\n");
+        }
         System.out.printf(d1.toString());
 
     }
