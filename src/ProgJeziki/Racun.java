@@ -65,10 +65,12 @@ public class Racun implements Searchable {
 
     @Override
     public String toString() {
-        return "Racun: " +
+        return "-------------------------------------------------------------------\n"+
+                "Racun: " +
                 "id='" + id + "\n"+ "davcna st:" + davcna + "\n" +
                 "izdajatelj: " + izdajatelj +
                 "datum: " + datum +"\n"+
+                "-------------------------------------------------------------------\n"+
                 izdelki ;
 
     }

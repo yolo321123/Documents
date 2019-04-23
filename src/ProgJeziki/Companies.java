@@ -8,14 +8,16 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 
-public class Companies {
+public class Companies implements JsonSupport{
     private ArrayList<Podjetje> seznam;
 
     public Companies(){
         this.seznam= new ArrayList<>();
     }
 
-    public void addPodjetje(){};
+    public void addPodjetje(Podjetje l){
+        seznam.add(l);
+    };
 
     public ArrayList<Podjetje> getTabela() {
         return seznam;
@@ -30,25 +32,26 @@ public class Companies {
         return "Podjetja" + seznam +
                 ' ';
     }
-    public void toJson() {
+    @Override
+    public String toJson() {
         Gson gson = new Gson();
         String json = gson.toJson(this);
         System.out.println(json);
 
-        try (FileWriter writer = new FileWriter("C:\\Users\\Jure\\Desktop\\test.json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\J-MAN\\Desktop\\test.json")) {
 
             gson.toJson(this, writer);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return json;
     }
-    
-    public void fromJSON() {
+    @Override
+    public void fromJson(String json) {
         Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("C:\\Users\\Jure\\Desktop\\test.json")) {
+        try (Reader reader = new FileReader("C:\\Users\\J-MAN\\Desktop\\test.json")) {
 
             Companies obj = gson.fromJson(reader, Companies.class);
             System.out.println(obj);

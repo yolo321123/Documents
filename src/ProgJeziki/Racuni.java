@@ -8,14 +8,16 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 
-public class Racuni {
+public class Racuni implements JsonSupport{
     private ArrayList<Racun> seznam;
 
     public Racuni(){
         this.seznam= new ArrayList<>();
     }
 
-    public void addRacun(){};
+    public void addRacun(Racun l){
+        seznam.add(l);
+    };
 
     public ArrayList<Racun> getTabela() {
         return seznam;
@@ -30,27 +32,29 @@ public class Racuni {
         return "Racuni" + seznam +
                 ' ';
     }
-    public void toJson() {
+    public String toJson() {
         Gson gson = new Gson();
         String json = gson.toJson(this);
         System.out.println(json);
 
-        try (FileWriter writer = new FileWriter("C:\\Users\\Jure\\Desktop\\test.json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\J-MAN\\Desktop\\test.json")) {
 
             gson.toJson(this, writer);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return json;
     }
 
-    public void fromJSON() {
+    @Override
+    public void fromJson(String json) {
+
         Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("C:\\Users\\Jure\\Desktop\\test.json")) {
+        try (Reader reader = new FileReader("C:\\Users\\J-MAN\\Desktop\\test.json")) {
 
-            Companies obj = gson.fromJson(reader, Companies.class);
+            Racuni obj = gson.fromJson(reader, Racuni.class);
             System.out.println(obj);
 
         } catch (IOException e) {

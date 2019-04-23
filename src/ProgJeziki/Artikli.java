@@ -9,7 +9,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Artikli {
+public class Artikli implements JsonSupport {
 
 
     private ArrayList<Artikel> seznam;
@@ -39,37 +39,29 @@ public class Artikli {
     @Override
     public String toString() {
         return "Artikli: " +
-                seznam ;
+                seznam+
+        "\n-------------------------------------------------------------------\n";
 
     }
-
-
-    public void toJson() {
+    @Override
+    public String toJson() {
         Gson gson = new Gson();
         String json = gson.toJson(this);
         System.out.println(json);
 
-        try (FileWriter writer = new FileWriter("C:\\Users\\Jure\\Desktop\\test.json")) {
-
-            gson.toJson(this, writer);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        Helper.WritetoFile("C:\\Users\\J-MAN\\Desktop\\test.json",json);
+        return json;
     }
 
+    @Override
+    public void fromJson(String json) {
 
-    public void fromJSON() {
+
         Gson gson = new Gson();
 
-        try (Reader reader = new FileReader("C:\\Users\\Jure\\Desktop\\test.json")) {
-
-            Companies obj = gson.fromJson(reader, Companies.class);
+            Artikli obj = gson.fromJson(Helper.ReadFromFile(json), Artikli.class);
             System.out.println(obj);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 }

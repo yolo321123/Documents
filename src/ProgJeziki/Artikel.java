@@ -25,10 +25,14 @@ public class Artikel implements Searchable {
         return drzava;
     }
 
-    public void setDrzava(String drzava) {
+    public void setDrzava(String drzava) { this.drzava = drzava; }
 
-        this.drzava = drzava;
+    public void setTeza(int teza) {
+        this.teza = teza;
+    }
 
+    public int getTeza() {
+        return teza;
     }
 
     public String getId() {
@@ -75,7 +79,7 @@ public class Artikel implements Searchable {
     }
 
 
-    public Artikel(int Cena, String ime, int Kolicina,String id, int[] EAN)
+    public Artikel(int Cena, String ime, int Kolicina,String id, int[] EAN,int TEZA)
     {
 
         this.id=id;
@@ -83,21 +87,22 @@ public class Artikel implements Searchable {
         this.Ime = ime;
         this.Kolicina = Kolicina;
         this.EAN =EAN;
+        this.teza=TEZA;
 
     }
 
     @Override
     public String toString()
     {
-        return "\n" + "Artikel{" +
+        return  "\n"+"Artikel{" +
                 "Cena=" + Cena +
                 ", Kolicina=" + Kolicina +
-                ", Ime='" + Ime + '\'' + "EAN= "+convert(EAN) + " " +
+                ", Ime='" + Ime + '\'' + "EAN= "+convert(EAN) + " " + "teza "+ EANtoTeza(EAN) +
                 '}';
     }
 
     public  String convert(int EAN[]){
-        posodobljen(EAN);
+        TezaToEAN(EAN);
         String strArray = new String();
         for(int i=0; i<EAN.length;i++) {
             strArray +=String.valueOf(EAN[i]);
@@ -108,7 +113,7 @@ public class Artikel implements Searchable {
     }
 
 
-    public  int[] posodobljen(int [] x ){
+    public  int[] TezaToEAN(int [] x ){
         if(teza!=0) {
 
             int[] tt = new int[4];
@@ -131,11 +136,10 @@ public class Artikel implements Searchable {
         return x;
     }
 
+    public int EANtoTeza(int[] x)
+    {
 
-    public int pregled_teze(int teza,long[] x){
-
-        // if(teza==0) {
-        long tmp = 0;
+        int tmp = 0;
         tmp = x[8] * 1000;
         teza = (int) tmp;
         tmp = x[9] * 100;
@@ -144,10 +148,6 @@ public class Artikel implements Searchable {
         teza += tmp;
         tmp = x[11] * 1;
         teza += tmp;
-        // }
-        //  else if(teza!=0){
-
-        //}
 
         return teza;
     }
