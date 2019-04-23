@@ -48,13 +48,14 @@ public class  Main {
 
         b1.toJson();
 
-        //e1.fromJSON();
-        System.out.printf("-------------------------------fuckyou--------------------------\n");
+        System.out.printf("-------------------------------dela--------------------------\n");
 
         b2.fromJson("C:\\Users\\J-MAN\\Desktop\\test.json");
 
-
-        System.out.printf(e2.toString());
+        System.out.printf("-------------------------------1-------------------------------\n");
+        System.out.printf(b1.toString());
+        System.out.printf("-------------------------------2-------------------------------\n");
+        System.out.printf(b2.toString());
 
     }
 
